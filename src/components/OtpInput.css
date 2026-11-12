@@ -1,0 +1,31 @@
+.otp {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.otp__box {
+  flex: 0 1 44px;
+  min-inline-size: 0;
+  block-size: 52px;
+  padding: 0;
+  border: 2px solid var(--blue-primary-4);
+  border-radius: 12px;
+  outline: 0;
+  background: var(--white);
+  font: 700 18px/27px var(--font-sora);
+  color: var(--blue-primary-12);
+  text-align: center;
+  caret-color: var(--blue-primary-9);
+  transition: border-color 150ms ease-out;
+}
+
+.otp__box[data-filled] {
+  border-color: #e7efff;
+}
+
+.otp__box:focus,
+.otp__box:focus-visible {
+  border-color: #76a6ff;
+  outline: none;
+}

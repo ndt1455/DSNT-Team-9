@@ -1,0 +1,106 @@
+.swipe {
+  position: relative;
+  block-size: 60px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: linear-gradient(158.37deg, var(--blue-primary-9) 20.25%, #76a6ff 84.18%);
+  box-shadow: 0 6px 24px rgb(46 124 246 / 20%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.swipe[data-state='success'] {
+  background: linear-gradient(158.37deg, #00a786 20.25%, #18cd76 84.18%);
+}
+
+.swipe[data-state='disabled'] {
+  opacity: 0.5;
+  background: linear-gradient(135deg, #d8e4f0 0%, #c5d5e8 100%);
+  box-shadow: none;
+}
+
+/* Figma "Swipe animation": a soft highlight sweeps right in 1 s, waits 0.8 s, then restarts. */
+.swipe__shimmer {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 171px;
+  background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 12%) 50%, rgb(255 255 255 / 0%) 100%);
+  animation: swipe-shimmer 1.8s infinite;
+  pointer-events: none;
+}
+
+@keyframes swipe-shimmer {
+  0% {
+    inset-inline-start: 0;
+    animation-timing-function: ease-out;
+  }
+
+  55%,
+  100% {
+    inset-inline-start: calc(100% - 19px);
+  }
+}
+
+.swipe__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 14px/24px var(--font-sora);
+  color: var(--white);
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+}
+
+.swipe[data-state='disabled'] .swipe__label {
+  opacity: 0.3;
+}
+
+.swipe__handle {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 60px;
+  block-size: 60px;
+  padding: 0;
+  border: 0;
+  border-radius: 30px;
+  background: rgb(255 255 255 / 6%);
+  cursor: grab;
+  touch-action: none;
+  transition: transform 300ms ease-out;
+}
+
+.swipe[data-dragging] .swipe__handle {
+  cursor: grabbing;
+  transition: none;
+}
+
+.swipe__handle:disabled {
+  cursor: not-allowed;
+}
+
+.swipe[data-state='success'] .swipe__handle {
+  cursor: default;
+}
+
+.swipe__handle:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: -2px;
+}
+
+.swipe__knob {
+  position: absolute;
+  inset: 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 26px;
+  background: linear-gradient(135deg, var(--white) 0%, #f0f4fa 100%);
+  box-shadow: 0 2px 12.31px rgb(46 124 246 / 35%);
+}
+
+.swipe[data-state='disabled'] .swipe__knob {
+  box-shadow: 0 2px 10px rgb(46 124 246 / 30%);
+}

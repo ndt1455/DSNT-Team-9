@@ -1,0 +1,48 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="123" height="123" viewBox="0 0 123 123" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Illustration">
+<path id="Subtract" d="M47.5332 29.0984C46.4354 28.9471 45.3229 29.3377 44.5381 30.1258L23.9727 50.6912H11.0508C5.08965 50.6912 8.39233e-05 55.5407 0 61.5018V65.1053L7.20703 68.7088L0 72.3123V83.1229C0 85.1146 1.61173 86.7264 3.60352 86.7264H119.396C121.388 86.7264 123 85.1146 123 83.1229V72.3123L115.793 68.7088L121.468 65.1053C112.397 48.5681 94.7965 35.0075 73.208 32.3084L47.5332 29.0984ZM72.3105 43.7029C72.3108 41.4255 74.4018 39.716 76.6387 40.1727C83.3051 41.5333 96.678 45.5458 107.715 57.8983H75.9141C73.924 57.8983 72.3105 56.2848 72.3105 54.2947V43.7029ZM61.9473 38.1629C63.7503 38.3883 65.1034 39.9209 65.1035 41.7381V54.2947C65.1035 56.2848 63.4901 57.8983 61.5 57.8983H26.957L48.3877 36.4676L61.9473 38.1629Z" fill="url(#paint0_linear_0_138)" fill-opacity="0.259"/>
+<g id="Vector">
+<use xlink:href="#stroke0_0_138" fill="white"/>
+<use xlink:href="#stroke0_0_138" fill="url(#paint1_linear_0_138)" fill-opacity="0.1"/>
+<use xlink:href="#stroke1_0_138" fill="white"/>
+<use xlink:href="#stroke1_0_138" fill="url(#paint2_linear_0_138)" fill-opacity="0.1"/>
+<use xlink:href="#stroke2_0_138" fill="white"/>
+<use xlink:href="#stroke2_0_138" fill="url(#paint3_linear_0_138)" fill-opacity="0.1"/>
+<use xlink:href="#stroke3_0_138" fill="white"/>
+<use xlink:href="#stroke3_0_138" fill="url(#paint4_linear_0_138)" fill-opacity="0.1"/>
+<use xlink:href="#stroke4_0_138" fill="white"/>
+<use xlink:href="#stroke4_0_138" fill="url(#paint5_linear_0_138)" fill-opacity="0.1"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_138" x1="61.5" y1="29.0662" x2="61.5" y2="86.7262" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_138" x1="61.5" y1="65.1054" x2="61.5" y2="93.9336" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_138" x1="61.5" y1="65.1054" x2="61.5" y2="93.9336" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint3_linear_0_138" x1="61.5" y1="65.1054" x2="61.5" y2="93.9336" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint4_linear_0_138" x1="61.5" y1="65.1054" x2="61.5" y2="93.9336" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint5_linear_0_138" x1="61.5" y1="65.1054" x2="61.5" y2="93.9336" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0059FF"/>
+<stop offset="1" stop-color="#0059FF" stop-opacity="0"/>
+</linearGradient>
+<path id="stroke0_0_138" d="M108.586 83.123C108.586 77.1618 103.737 72.3125 97.7754 72.3125C91.8142 72.3125 86.9648 77.1618 86.9648 83.123C86.9648 89.0842 91.8142 93.9336 97.7754 93.9336C103.737 93.9336 108.586 89.0842 108.586 83.123Z"/>
+<path id="stroke1_0_138" d="M43.4824 83.123C43.4824 77.1618 38.633 72.3125 32.6719 72.3125C26.7107 72.3125 21.8613 77.1618 21.8613 83.123C21.8613 89.0842 26.7107 93.9336 32.6719 93.9336C38.633 93.9336 43.4824 89.0842 43.4824 83.123Z"/>
+<path id="stroke2_0_138" d="M121.468 65.1054H112.189C110.198 65.1054 108.586 66.7172 108.586 68.709C108.586 70.7007 110.198 72.3125 112.189 72.3125H123V68.709C123 68.1495 122.87 67.5969 122.62 67.0972C122.28 66.4171 121.835 65.7759 121.468 65.1054Z"/>
+<path id="stroke3_0_138" d="M14.6543 68.709C14.6543 66.7172 13.0426 65.1054 11.0508 65.1054H0V72.3125H11.0508C13.0426 72.3125 14.6543 70.7007 14.6543 68.709Z"/>
+<path id="stroke4_0_138" d="M68.707 65.1054H61.5C59.5082 65.1054 57.8965 66.7172 57.8965 68.709C57.8965 70.7007 59.5082 72.3125 61.5 72.3125H68.707C70.6988 72.3125 72.3105 70.7007 72.3105 68.709C72.3105 66.7172 70.6988 65.1054 68.707 65.1054Z"/>
+</defs>
+</svg>

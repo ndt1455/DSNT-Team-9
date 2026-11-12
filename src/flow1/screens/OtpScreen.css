@@ -1,0 +1,53 @@
+.otp-panel {
+  gap: 24px;
+  padding: 24px 16px;
+}
+
+.otp-panel__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  text-align: center;
+}
+
+.otp-panel__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 70px;
+  block-size: 70px;
+  border: 1.5px solid rgb(46 124 246 / 10%);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgb(46 124 246 / 6%) 0%, rgb(46 124 246 / 12%) 100%);
+}
+
+.otp-panel__title {
+  font: 500 18px/32px var(--font-sora);
+  color: var(--navy);
+}
+
+.otp-panel__sent {
+  font: 400 14px/24px var(--font-sora);
+  color: #7a9cc6;
+}
+
+.otp-panel__phone {
+  font-weight: 500;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.otp-panel__code {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.otp-panel__resend {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font: 400 12px/20px var(--font-sora);
+  color: var(--gray-9);
+}
