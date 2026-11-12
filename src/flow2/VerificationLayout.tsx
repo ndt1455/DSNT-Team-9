@@ -1,15 +1,11 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import type { ButtonHTMLAttributes, KeyboardEvent, ReactNode } from 'react';
+import { ProgressBar } from '../components/ProgressBar';
+import { Screen } from '../components/Screen';
 import backDark from './assets/back-dark.svg';
 import backLight from './assets/back-light.svg';
-import batteryDark from './assets/battery-dark.svg';
-import batteryLight from './assets/battery-light.svg';
-import cellularDark from './assets/cellular-dark.svg';
-import cellularLight from './assets/cellular-light.svg';
 import moreDark from './assets/more-dark.svg';
 import moreLight from './assets/more-light.svg';
-import wifiDark from './assets/wifi-dark.svg';
-import wifiLight from './assets/wifi-light.svg';
 import './verification.css';
 
 type HeaderActions = {
@@ -18,28 +14,18 @@ type HeaderActions = {
   onRetake?: () => void;
 };
 
+/** Fill of the shared progress bar: Scan EID steps sit at 50 %, selfie steps at 80 %. */
+const PROGRESS = { id: 50, selfie: 80 } as const;
+
 type LayoutProps = {
   title: string;
   appearance?: 'light' | 'dark' | 'summary';
-  progress?: 'otp' | 'id' | 'selfie';
+  progress?: keyof typeof PROGRESS;
   header?: HeaderActions;
   contentClassName?: string;
   actions?: ReactNode;
   children: ReactNode;
 };
-
-function StatusBar({ dark }: { dark: boolean }) {
-  return (
-    <div className="flow-status-bar" aria-hidden="true">
-      <span>9:41</span>
-      <span className="flow-status-bar__icons">
-        <img src={dark ? cellularLight : cellularDark} alt="" />
-        <img src={dark ? wifiLight : wifiDark} alt="" />
-        <img src={dark ? batteryLight : batteryDark} alt="" />
-      </span>
-    </div>
-  );
-}
 
 function VerificationHeader({ title, dark, onBack, onRestart, onRetake }: HeaderActions & {
   title: string;
@@ -102,36 +88,30 @@ function VerificationHeader({ title, dark, onBack, onRestart, onRetake }: Header
   );
 }
 
+/** Flow 2 screen: the shared `Screen` frame with the Verify identity header and Flow 2 backgrounds. */
 export function VerificationLayout({
   title,
   appearance = 'light',
   progress,
   header,
-  contentClassName = '',
+  contentClassName,
   actions,
   children,
 }: LayoutProps) {
-  const screen = useRef<HTMLElement>(null);
   const dark = appearance === 'dark';
 
-  useEffect(() => {
-    screen.current?.focus({ preventScroll: true });
-    window.scrollTo(0, 0);
-  }, [title]);
-
   return (
-    <main
-      className={['flow-shell', 'flow-shell--' + appearance].join(' ')}
-      ref={screen}
-      tabIndex={-1}
-      aria-label={title}
+    <Screen
+      className={`flow-shell flow-shell--${appearance}`}
+      background="none"
+      statusBarTone={dark ? 'light' : 'dark'}
+      progress={progress && <ProgressBar value={PROGRESS[progress]} label="Verify identity progress" />}
+      header={header && <VerificationHeader title={title} dark={dark} {...header} />}
+      bodyClassName={['flow-content', contentClassName].filter(Boolean).join(' ')}
+      footer={actions && <div className="flow-actions">{actions}</div>}
     >
-      {progress && <div className={'flow-progress flow-progress--' + progress} aria-hidden="true" />}
-      <StatusBar dark={dark} />
-      {header && <VerificationHeader title={title} dark={dark} {...header} />}
-      <div className={'flow-content ' + contentClassName}>{children}</div>
-      {actions && <footer className="flow-actions">{actions}</footer>}
-    </main>
+      {children}
+    </Screen>
   );
 }
 

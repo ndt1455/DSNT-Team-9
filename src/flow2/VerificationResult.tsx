@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import otpCheck from './assets/otp-check.svg';
 import stepCheck from './assets/step-check.svg';
 import stepCurrent from './assets/step-current.svg';
 import stepIdentity from './assets/step-identity.svg';
@@ -30,33 +28,6 @@ const progress = [
 
 function AccerBrand() {
   return <p className="flow-brand"><span aria-hidden="true" />Accer</p>;
-}
-
-export function OtpSuccess({ autoAdvance, onContinue }: {
-  autoAdvance: boolean;
-  onContinue: () => void;
-}) {
-  useEffect(() => {
-    if (!autoAdvance) return;
-
-    const timer = window.setTimeout(onContinue, 2000);
-    return () => window.clearTimeout(timer);
-  }, [autoAdvance, onContinue]);
-
-  return (
-    <VerificationLayout
-      title="Verified Successfully"
-      progress="otp"
-      contentClassName="flow-content--otp"
-      actions={!autoAdvance && <FlowAction onClick={onContinue}>Continue</FlowAction>}
-    >
-      <span className="flow-otp-check"><img src={otpCheck} alt="" /></span>
-      <div>
-        <h1>Verified Successfully</h1>
-        <p>Phone number verified! Now, let's scan your ID. Please have it ready.</p>
-      </div>
-    </VerificationLayout>
-  );
 }
 
 export function VerificationResult({ onContinue }: { onContinue: () => void }) {

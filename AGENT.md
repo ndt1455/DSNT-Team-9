@@ -17,6 +17,7 @@ MVP là ứng dụng web mobile-first dùng React, TypeScript và Vite để tes
 
 - Kiểm tra `git status` trước khi sửa và giữ các thay đổi đang có của đồng đội. Tạo nhánh mới theo mẫu `feature/flowN` từ `main` hiện hành. Dùng nhánh đã có khi tiếp tục một flow.
 - Giữ mỗi PR trong phạm vi một flow. Ghi rõ frame đã triển khai, các trạng thái đã kiểm tra và cách chạy lại trên browser. Kiểm tra các flow liên quan khi sửa thành phần dùng chung.
+- Các flow chạy nối tiếp trong một hành trình do `src/App.tsx` điều phối. Thêm màn mới vào danh sách màn của flow (`FLOW1_SCREENS`, `VERIFICATION_STEPS`) và khai báo màn quay lại tương ứng để màn có hash riêng và hỗ trợ nút Back. Dựng màn trên `Screen` trong `src/components` để giữ khung thiết bị, status bar và thanh tiến độ thống nhất.
 - Dùng nội dung, trạng thái và bố cục trong frame Figma tương ứng. Thiết kế lấy chiều rộng 375 px làm mốc và cần co giãn trên màn hình rộng hoặc hẹp hơn. Dùng phần tử HTML có ngữ nghĩa và hỗ trợ thao tác bằng bàn phím.
 - Dùng dữ liệu giả cho số điện thoại, email, OTP, giấy tờ và selfie trong bản demo. Giữ bí mật và dữ liệu nhận dạng thật ngoài mã nguồn, dữ liệu mẫu và log.
 - Chạy `npm ci` để cài dependencies từ lockfile, `npm run dev` để test và `npm run build` để kiểm tra kiểu dữ liệu và tạo bản showcase. Mở flow đã sửa ở viewport 375 px và desktop.

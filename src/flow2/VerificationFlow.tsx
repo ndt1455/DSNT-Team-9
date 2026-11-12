@@ -1,5 +1,6 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId } from 'react';
 import type { FormEvent, ReactNode } from 'react';
+import type { NavigateOptions } from '../hooks/useScreenHistory';
 import idPerson from './assets/id-person.svg';
 import promoIcon from './assets/promo.svg';
 import selfieIcon from './assets/selfie.svg';
@@ -9,34 +10,45 @@ import type { CaptureSubject } from './CapturePreview';
 import { FlowAction, VerificationLayout } from './VerificationLayout';
 import { VerificationResult } from './VerificationResult';
 
-type Step =
-  | 'scan-id'
-  | 'promo'
-  | 'front-scan'
-  | 'front-review'
-  | 'back-scan'
-  | 'back-review'
-  | 'selfie-intro'
-  | 'selfie-scan'
-  | 'selfie-review'
-  | 'verified';
+/** Flow 2 steps in prototype order. Each id is also the URL hash, e.g. `#promo`. */
+export const VERIFICATION_STEPS = [
+  'scan-id',
+  'promo',
+  'front-scan',
+  'front-review',
+  'back-scan',
+  'back-review',
+  'selfie-intro',
+  'selfie-scan',
+  'selfie-review',
+  'documents-verified',
+] as const;
+
+export type VerificationStep = (typeof VERIFICATION_STEPS)[number];
+
+/** How long a simulated scan runs before the review step. */
+const SCAN_DURATION_MS = 1400;
 
 type CaptureStep = {
   subject: CaptureSubject;
-  next: Step;
-  retake?: Step;
+  next: VerificationStep;
+  retake?: VerificationStep;
 };
 
-const captures: Partial<Record<Step, CaptureStep>> = {
+const captures: Partial<Record<VerificationStep, CaptureStep>> = {
   'front-scan': { subject: 'front', next: 'front-review' },
   'front-review': { subject: 'front', next: 'back-scan', retake: 'front-scan' },
   'back-scan': { subject: 'back', next: 'back-review' },
   'back-review': { subject: 'back', next: 'selfie-intro', retake: 'back-scan' },
   'selfie-scan': { subject: 'selfie', next: 'selfie-review' },
-  'selfie-review': { subject: 'selfie', next: 'verified', retake: 'selfie-scan' },
+  'selfie-review': { subject: 'selfie', next: 'documents-verified', retake: 'selfie-scan' },
 };
 
-const previousStep: Partial<Record<Step, Step>> = {
+/**
+ * Where each Flow 2 header back button goes. Scan steps swap themselves for their review step
+ * in history, so going back skips them. `scan-id` goes back to Flow 1 and is set by the app.
+ */
+export const VERIFICATION_BACK_TARGETS: Partial<Record<VerificationStep, VerificationStep>> = {
   promo: 'scan-id',
   'front-scan': 'promo',
   'front-review': 'promo',
@@ -95,54 +107,54 @@ function InstructionCard({ title, illustration, description, tips }: {
 }
 
 type VerificationFlowProps = {
+  step: VerificationStep;
+  promoCode: string;
+  onPromoCodeChange: (code: string) => void;
+  onNavigate: (step: VerificationStep, options?: NavigateOptions) => void;
   onBack: () => void;
-  onComplete: (promoCode: string | null) => void;
+  /** Header menu "Restart verification": back to Scan EID with the promo code cleared. */
+  onRestart: () => void;
+  /** Continue on the documents-verified summary. */
+  onComplete: () => void;
 };
 
-export function VerificationFlow({ onBack, onComplete }: VerificationFlowProps) {
-  const [step, setStep] = useState<Step>('scan-id');
-  const [promoCode, setPromoCode] = useState('');
+export function VerificationFlow({
+  step,
+  promoCode,
+  onPromoCodeChange,
+  onNavigate,
+  onBack,
+  onRestart,
+  onComplete,
+}: VerificationFlowProps) {
   const promoFormId = useId();
   const capture = captures[step];
 
   useEffect(() => {
     if (!capture || capture.retake) return;
 
-    const timer = window.setTimeout(() => {
-      setStep((current) => current === step ? capture.next : current);
-    }, 1400);
+    const timer = window.setTimeout(() => onNavigate(capture.next, { replace: true }), SCAN_DURATION_MS);
     return () => window.clearTimeout(timer);
-  }, [capture, step]);
-
-  function goBack() {
-    const previous = previousStep[step];
-    if (previous) setStep(previous);
-    else onBack();
-  }
-
-  function restart() {
-    setPromoCode('');
-    setStep('scan-id');
-  }
+  }, [capture, onNavigate]);
 
   function applyPromo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const code = promoCode.trim();
     if (!code) return;
 
-    setPromoCode(code);
-    setStep('front-scan');
+    onPromoCodeChange(code);
+    onNavigate('front-scan');
   }
 
   function skipPromo() {
-    setPromoCode('');
-    setStep('front-scan');
+    onPromoCodeChange('');
+    onNavigate('front-scan');
   }
 
-  const header = { onBack: goBack, onRestart: restart };
+  const header = { onBack, onRestart };
 
-  if (step === 'verified') {
-    return <VerificationResult onContinue={() => onComplete(promoCode || null)} />;
+  if (step === 'documents-verified') {
+    return <VerificationResult onContinue={onComplete} />;
   }
 
   if (capture) {
@@ -151,14 +163,13 @@ export function VerificationFlow({ onBack, onComplete }: VerificationFlowProps) 
 
     return (
       <VerificationLayout
-        key={step}
         title={captureTitles[subject]}
         appearance="dark"
         progress={isSelfie ? 'selfie' : 'id'}
-        header={{ ...header, onRetake: retake ? () => setStep(retake) : undefined }}
+        header={{ ...header, onRetake: retake ? () => onNavigate(retake, { replace: true }) : undefined }}
         contentClassName="flow-content--capture"
         actions={retake && (
-          <FlowAction variant="inverse" onClick={() => setStep(next)}>
+          <FlowAction variant="inverse" onClick={() => onNavigate(next)}>
             {isSelfie ? 'Verify' : 'Continue'}
           </FlowAction>
         )}
@@ -171,7 +182,6 @@ export function VerificationFlow({ onBack, onComplete }: VerificationFlowProps) 
   if (step === 'promo') {
     return (
       <VerificationLayout
-        key={step}
         title="Promo Code"
         progress="id"
         header={header}
@@ -195,7 +205,7 @@ export function VerificationFlow({ onBack, onComplete }: VerificationFlowProps) 
             id={`${promoFormId}-code`}
             name="promoCode"
             value={promoCode}
-            onChange={(event) => setPromoCode(event.target.value)}
+            onChange={(event) => onPromoCodeChange(event.target.value)}
             placeholder="Enter promo code"
             autoComplete="off"
             spellCheck={false}
@@ -209,12 +219,11 @@ export function VerificationFlow({ onBack, onComplete }: VerificationFlowProps) 
 
   return (
     <VerificationLayout
-      key={step}
       title={selfie ? 'Take a Selfie' : 'Scan EID'}
       progress={selfie ? 'selfie' : 'id'}
       header={header}
       contentClassName="flow-content--card"
-      actions={<FlowAction onClick={() => setStep(selfie ? 'selfie-scan' : 'promo')}>Verify</FlowAction>}
+      actions={<FlowAction onClick={() => onNavigate(selfie ? 'selfie-scan' : 'promo')}>Verify</FlowAction>}
     >
       <InstructionCard
         title={selfie ? 'Selfie Verification' : 'Scan your ID'}

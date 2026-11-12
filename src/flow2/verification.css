@@ -1,27 +1,4 @@
-@font-face {
-  font-family: Sora;
-  src: url('./fonts/sora.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('./fonts/plus-jakarta-sans.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Manrope;
-  src: url('./fonts/manrope.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
+/* Flow 2 skin for the shared `Screen` layout, which sizes and frames every screen. */
 .flow-shell {
   --flow-blue: #0059ff;
   --flow-navy: #00286b;
@@ -31,12 +8,6 @@
   --flow-green: #18cd76;
   --flow-gutter: 24px;
   --flow-outline: #0059ff;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  inline-size: 100%;
-  min-block-size: 100svh;
-  overflow: hidden;
   color: var(--flow-ink);
   background: #f3f7ff url('./assets/background.svg') center / cover no-repeat;
   font-family: Sora, system-ui, sans-serif;
@@ -62,10 +33,6 @@
   display: block;
 }
 
-.flow-shell:focus {
-  outline: none;
-}
-
 .flow-shell :is(button, input):focus-visible {
   outline: 2px solid var(--flow-outline);
   outline-offset: 3px;
@@ -79,59 +46,6 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.flow-progress {
-  position: absolute;
-  inset: 0 0 auto;
-  block-size: 4px;
-  border-radius: 99px;
-  background: #d5d7dd;
-}
-
-.flow-progress::before {
-  display: block;
-  inline-size: var(--flow-progress-width);
-  block-size: 100%;
-  border-radius: inherit;
-  background: #2e7cf6 var(--flow-progress-image) center / 100% 100% no-repeat;
-  content: '';
-}
-
-.flow-progress--otp {
-  --flow-progress-width: 25.33%;
-  --flow-progress-image: url('./assets/progress-otp.png');
-}
-
-.flow-progress--id {
-  --flow-progress-width: 50.13%;
-  --flow-progress-image: url('./assets/progress-id.png');
-}
-
-.flow-progress--selfie {
-  --flow-progress-width: 80%;
-  --flow-progress-image: url('./assets/progress-selfie.png');
-}
-
-.flow-status-bar {
-  display: flex;
-  flex: 0 0 50px;
-  align-items: center;
-  justify-content: space-between;
-  padding-block-start: 14px;
-  padding-inline: clamp(28px, 13.4%, 50px) clamp(22px, 7.5%, 28px);
-  color: var(--flow-black);
-  font: 600 17px/22px system-ui, sans-serif;
-}
-
-.flow-status-bar__icons {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.flow-shell--dark .flow-status-bar {
-  color: white;
 }
 
 .flow-header {
@@ -224,10 +138,6 @@
 
 .flow-options__panel button:is(:hover, :focus-visible) {
   background: #eff5fd;
-}
-
-.flow-content {
-  flex: 1;
 }
 
 .flow-content--card {
@@ -402,7 +312,6 @@
 .flow-actions {
   display: grid;
   gap: 10px;
-  padding: 24px var(--flow-gutter);
 }
 
 .flow-action {
@@ -443,11 +352,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
   gap: 20px;
   padding: 24px var(--flow-gutter) 0;
 }
 
+/* Scan steps have no button; keep the frame where the review step's button pushes it. */
 .flow-content--capture:last-child {
   margin-block-end: 104px;
 }
@@ -560,46 +470,6 @@
   text-align: center;
 }
 
-.flow-content--otp {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  padding: 24px var(--flow-gutter);
-  text-align: center;
-}
-
-.flow-otp-check {
-  position: relative;
-  inline-size: 100px;
-  block-size: 100px;
-  flex: none;
-}
-
-.flow-otp-check img {
-  position: absolute;
-  inset: -16.67px auto auto 50%;
-  transform: translateX(-50%) scale(0.833333);
-  transform-origin: top center;
-}
-
-.flow-content--otp h1 {
-  position: relative;
-  color: var(--flow-navy);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 36px;
-}
-
-.flow-content--otp p {
-  max-inline-size: 253px;
-  margin: 8px auto 0;
-  color: var(--flow-muted);
-  font-size: 12px;
-  line-height: 20px;
-}
-
 .flow-summary-header {
   display: grid;
   gap: 16px;
@@ -692,15 +562,6 @@
   font-size: 14px;
   line-height: 24px;
   list-style: square;
-}
-
-@media (min-width: 30rem) {
-  .flow-shell {
-    inline-size: 375px;
-    min-block-size: min(812px, calc(100svh - 32px));
-    border-radius: 40px;
-    box-shadow: 0 16px 44px rgb(15 29 53 / 14%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
