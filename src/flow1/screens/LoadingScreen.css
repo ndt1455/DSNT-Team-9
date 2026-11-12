@@ -1,0 +1,14 @@
+.loading-screen {
+  background: radial-gradient(50% 50% at 50% 50%, #004ed1 0%, #003ba3 50%, #002974 100%);
+}
+
+/* Two blurred ellipses from Figma "Frame 3", centred 5.5 px right of the frame centre. */
+.loading-screen__glow {
+  position: absolute;
+  inset-block-start: -283px;
+  inset-inline-start: calc(50% - 336.5px);
+  z-index: -1;
+  inline-size: 684px;
+  block-size: 1354px;
+  pointer-events: none;
+}

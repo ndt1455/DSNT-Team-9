@@ -1,0 +1,48 @@
+.app-header {
+  display: flex;
+  flex: none;
+  gap: 24px;
+  align-items: center;
+  block-size: 72px;
+  padding: 12px 16px;
+}
+
+.app-header__titles {
+  flex: 1 1 0;
+  min-inline-size: 0;
+  text-align: center;
+}
+
+.app-header__eyebrow {
+  font: 400 12px/20px var(--font-sora);
+  color: var(--gray-10);
+}
+
+.app-header__title {
+  font: 600 16px/28px var(--font-sora);
+  color: var(--gray-12);
+}
+
+/* Figma Button: Size=Medium, Type=Ghost, Text=False. */
+.icon-button {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  padding: 0;
+  border: 1px solid var(--white);
+  border-radius: 90px;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: #eef0f3;
+}
+
+.icon-button--static,
+.icon-button--static:hover {
+  background: var(--white);
+  cursor: default;
+}

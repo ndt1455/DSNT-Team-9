@@ -1,0 +1,49 @@
+.brand-mark {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  block-size: 28px;
+}
+
+.brand-mark__tile {
+  display: grid;
+  place-items: center;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: 9px;
+  background: var(--gradient-brand);
+}
+
+.brand-mark__tile::after {
+  content: '';
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 85%);
+}
+
+.brand-mark__name {
+  font: 700 17px/25.5px var(--font-sora);
+  color: var(--navy);
+}
+
+/* Logo + heading block at the top of the Accer brand screens. */
+.brand-header {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.brand-header--start {
+  align-items: flex-start;
+  text-align: start;
+}
+
+.brand-header__title {
+  font: 400 24px/32px var(--font-sora);
+  color: var(--gray-12);
+}

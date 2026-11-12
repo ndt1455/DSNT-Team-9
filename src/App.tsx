@@ -1,8 +1,9 @@
+import Flow1 from './flow1/Flow1';
+
 export default function App() {
   return (
-    <main className="preview">
-      <h1>Accer</h1>
-      <p>MVP preview</p>
+    <main className="device">
+      <Flow1 />
     </main>
   );
 }

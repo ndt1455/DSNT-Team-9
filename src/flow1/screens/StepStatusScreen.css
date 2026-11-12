@@ -1,0 +1,138 @@
+.step-status__title {
+  font: 400 20px/28px var(--font-sora);
+  color: var(--gray-12);
+}
+
+.step-status {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px 32px;
+}
+
+/* Figma "Stepper Vertical" with leading text. */
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepper__step {
+  --step-color: var(--gray-8);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepper__step--done {
+  --step-color: var(--teal-alpha-10);
+}
+
+.stepper__step--active {
+  --step-color: var(--blue-primary-9);
+}
+
+.stepper__head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.stepper__symbol {
+  position: relative;
+  flex: none;
+  inline-size: 32px;
+  block-size: 32px;
+}
+
+.stepper__circle {
+  position: absolute;
+  inset: 0;
+}
+
+.stepper__icon {
+  position: absolute;
+  inset-block-start: 6px;
+  inset-inline-start: 6px;
+}
+
+/* Figma insets the money-send icon at 17.19 % / 20.31 %, half a pixel off centre. */
+.stepper__step--upcoming .stepper__icon {
+  inset-block-start: 5.5px;
+  inset-inline-start: 5.5px;
+}
+
+.stepper__title {
+  font: 500 18px/32px var(--font-sora);
+  color: var(--gray-11);
+}
+
+.stepper__step--active .stepper__title {
+  color: var(--blue-primary-9);
+}
+
+.stepper__step--upcoming .stepper__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--gray-8);
+}
+
+.stepper__body {
+  display: flex;
+  gap: 16px;
+}
+
+.stepper__trail {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  inline-size: 32px;
+}
+
+.stepper__trail::before {
+  content: '';
+  inline-size: 2px;
+  background: var(--step-color);
+}
+
+.stepper__items {
+  font: 400 14px/24px var(--font-sora);
+  color: var(--gray-11);
+}
+
+.stepper__step--active .stepper__items {
+  color: var(--blue-primary-9);
+}
+
+.stepper__step--upcoming .stepper__items {
+  color: var(--gray-8);
+}
+
+.stepper__items li {
+  position: relative;
+  padding-inline-start: 21px;
+}
+
+.stepper__items li::before {
+  content: '•';
+  position: absolute;
+  inset-inline-start: 7px;
+}
+
+/* Figma "Toast/Notification", Additional variant. */
+.step-status__toast {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid var(--blue-alpha-3);
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgb(5 88 255 / 10%) 0%, rgb(5 230 255 / 5%) 100%);
+}
+
+.step-status__toast p {
+  font: 400 12px/20px var(--font-sora);
+  color: var(--gray-12);
+}

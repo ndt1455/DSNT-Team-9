@@ -1,0 +1,147 @@
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-inline: 24px;
+}
+
+/* Figma "Tab button" (Default / Active). */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.category-tab {
+  padding: 6.75px 22.5px;
+  border: 1.5px solid var(--blue-alpha-5);
+  border-radius: 100px;
+  background: var(--gray-alpha-1);
+  backdrop-filter: blur(8px);
+  font: 600 13px/19.5px var(--font-jakarta);
+  color: var(--blue-primary-9);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.category-tab[aria-pressed='true'] {
+  padding: 7.25px 23px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  background: linear-gradient(161.88deg, var(--blue-primary-9) 0%, #5b9bff 100%);
+  color: var(--white);
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Figma "Product Card" (Default / Selected). Border + padding add up to the design's 17.5 px / 18 px inset. */
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--gray-alpha-2);
+  border-radius: 18px;
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.product-card[data-selected] {
+  border: 2px solid var(--blue-primary-9);
+}
+
+.product-card:has(input:focus-visible) {
+  outline: 2px solid var(--blue-primary-9);
+  outline-offset: 2px;
+}
+
+.product-card__ellipse {
+  position: absolute;
+  inset-block-start: -41px;
+  inset-inline-end: -99px;
+  pointer-events: none;
+}
+
+.product-card__eyebrow,
+.product-card__name {
+  position: relative;
+  white-space: nowrap;
+}
+
+.product-card__eyebrow {
+  font: 400 12px/20px var(--font-sora);
+  color: var(--gray-9);
+}
+
+.product-card__name {
+  font: 400 20px/28px var(--font-sora);
+  color: var(--black);
+}
+
+.product-card[data-selected] .product-card__name {
+  color: var(--blue-primary-9);
+}
+
+/* Illustration boxes, measured from the card's inner edge in Figma. */
+.product-art {
+  position: absolute;
+  overflow: hidden;
+  inline-size: 123px;
+  block-size: 123px;
+  pointer-events: none;
+}
+
+.product-art img {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+.product-art--credit-card {
+  inset-block-start: 6.5px;
+  inset-inline-end: 0.5px;
+}
+
+.product-art--credit-card img {
+  inset-block-start: 6.65px;
+  inset-inline-start: 6.43px;
+}
+
+.product-art--personal,
+.product-art--car {
+  inset-block-start: -3.5px;
+  inset-inline-end: -14.5px;
+}
+
+.product-art .product-art__hand {
+  inset-block-start: 62.29px;
+  inset-inline-start: 10.8px;
+  transform: scaleX(-1);
+}
+
+.product-art .product-art__coin {
+  inset-block-start: 9.98px;
+  inset-inline-start: 10.8px;
+}
+
+.product-art--home {
+  inset-block-start: 3.5px;
+  inset-inline-end: 5.5px;
+  inline-size: 96px;
+  block-size: 96px;
+}
+
+.product-art--home img {
+  inset-block-start: 2.99px;
+}
