@@ -1,0 +1,43 @@
+.verified {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+/* Figma "Verify tick" is a 120 px component placed at 100 px; its shadow overflows the box. */
+.verified__tick {
+  position: relative;
+  inline-size: 100px;
+  block-size: 100px;
+}
+
+.verified__tick img {
+  position: absolute;
+  inset-block-start: -16.67px;
+  inset-inline-start: -26.67px;
+  inline-size: 153.33px;
+  block-size: 153.33px;
+}
+
+.verified__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.verified__title {
+  font: 600 20px/36px var(--font-sora);
+  color: var(--blue-primary-12);
+}
+
+.verified__message {
+  max-inline-size: 253px;
+  font: 400 12px/20px var(--font-sora);
+  color: var(--gray-9);
+}

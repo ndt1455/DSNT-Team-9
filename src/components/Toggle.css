@@ -1,0 +1,28 @@
+.toggle {
+  flex: none;
+  inline-size: 48px;
+  block-size: 28px;
+  padding: 3px;
+  border: 0;
+  border-radius: 14px;
+  background: #d4dee8;
+  cursor: pointer;
+}
+
+.toggle[aria-checked='true'] {
+  background: var(--gradient-brand);
+}
+
+.toggle__knob {
+  display: block;
+  inline-size: 22px;
+  block-size: 22px;
+  border-radius: 11px;
+  background: var(--white);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+  transition: transform 200ms ease-out;
+}
+
+.toggle[aria-checked='true'] .toggle__knob {
+  transform: translateX(20px);
+}

@@ -1,0 +1,75 @@
+.steps-intro__subtitle {
+  font: 400 14px/24px var(--font-sora);
+  color: var(--blue-primary-9);
+}
+
+.step-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+/* Figma "Card-Step to do" (Default 64 px / Active 196 px). */
+.step-card {
+  --step-duration: 1s;
+  --step-ease: cubic-bezier(0.3, 1.15, 0.5, 1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, var(--white) 0%, rgb(255 255 255 / 0%) 100%);
+  text-align: center;
+}
+
+.step-card__title {
+  font: 500 18px/32px var(--font-sora);
+  color: var(--gray-8);
+  transition:
+    font-size var(--step-duration) var(--step-ease),
+    line-height var(--step-duration) var(--step-ease),
+    color var(--step-duration) ease;
+}
+
+.step-card[data-active] .step-card__title {
+  font-size: 20px;
+  line-height: 36px;
+  color: var(--gray-12);
+}
+
+/* Height-collapsing wrappers for the icon and the item list. */
+.step-card__collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  align-self: stretch;
+  opacity: 0;
+  transition:
+    grid-template-rows var(--step-duration) var(--step-ease),
+    opacity var(--step-duration) ease;
+}
+
+.step-card__collapse > div {
+  min-block-size: 0;
+  overflow: hidden;
+}
+
+.step-card[data-active] .step-card__collapse {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.step-card__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  margin: 0 auto 8px;
+}
+
+.step-card__items {
+  padding-block-start: 8px;
+  font: 400 14px/24px var(--font-sora);
+  color: var(--gray-11);
+}
